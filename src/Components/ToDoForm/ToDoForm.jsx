@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ToDoForm(props) {
   const [showAlert, setShowAlert] = useState(false);
@@ -36,10 +37,12 @@ export default function ToDoForm(props) {
         title: titleInput,
         description: descriptionInput,
         userName: props.userName,
-        date: new Date(Date.now()).toISOString(),
-        itemId: "1",
+        userId: props.userId,
+        date: Date.now(),
+        itemId: uuidv4(),
       };
     }
+    setFormComplete(false);
   }, [formComplete]);
 
   return (

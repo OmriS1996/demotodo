@@ -5,17 +5,20 @@ import "./App.css";
 
 function App() {
   const [userName, setUserName] = useState("");
+  const [userId, setUserid] = useState("");
 
   useEffect(() => {
-    const name = localStorage.getItem("name");
-    if (name) {
+    const name = sessionStorage.getItem("userName");
+    const uId = sessionStorage.getItem("userId");
+    if (name && uId) {
       setUserName(name);
+      setUserid(uId);
     }
   }, []);
 
   return (
     <div className="App">
-      {userName ? <MainPage userName={userName} /> : <Login />}
+      {userId ? <MainPage userName={userName} userId={userId} /> : <Login />}
     </div>
   );
 }
