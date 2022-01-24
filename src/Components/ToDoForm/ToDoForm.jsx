@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 export default function ToDoForm(props) {
   const [showAlert, setShowAlert] = useState(false);
@@ -31,16 +31,26 @@ export default function ToDoForm(props) {
     }
   }
 
-  useEffect(() => {
-    if (formComplete === true) {
-      let todo = {
+  function itemPost() {
+    axios
+      .post("http://localhost:4000/additem", {
         title: titleInput,
         description: descriptionInput,
         userName: props.userName,
         userId: props.userId,
         date: Date.now(),
-        itemId: uuidv4(),
-      };
+      })
+      .then(function () {
+        window.location.reload(false);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  useEffect(() => {
+    if (formComplete === true) {
+      itemPost();
     }
     setFormComplete(false);
   }, [formComplete]);

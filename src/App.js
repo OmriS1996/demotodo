@@ -5,14 +5,14 @@ import "./App.css";
 
 function App() {
   const [userName, setUserName] = useState("");
-  const [userId, setUserid] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     const name = sessionStorage.getItem("userName");
     const uId = sessionStorage.getItem("userId");
     if (name && uId) {
       setUserName(name);
-      setUserid(uId);
+      setUserId(uId);
     }
   }, []);
 

@@ -33,9 +33,11 @@ export default function Login() {
         name: textInput,
       })
       .then(function (response) {
-        console.log(response);
         sessionStorage.setItem("userName", response.data.userName);
         sessionStorage.setItem("userId", response.data.userId);
+      })
+      .then(function () {
+        window.location.reload(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -47,7 +49,6 @@ export default function Login() {
       setIsLoading(true);
       namePost();
       setIsLoading(false);
-      window.location.reload(false);
     }
   }, [formComplete]);
 
